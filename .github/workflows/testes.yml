@@ -1,0 +1,32 @@
+name: Executar Testes Unitários
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Restaurar dependências
+        run: dotnet restore src/ProjetoWakeCommerce.sln
+
+      - name: Compilar a aplicação
+        run: dotnet build src/ProjetoWakeCommerce.sln --no-restore --configuration Release
+
+      - name: Instalar a ferramenta dotnet-ef
+        run: dotnet tool install --global dotnet-ef --version 6.*
+
+      - name: Rodar testes unitários
+        run: dotnet test src/ProjetoWakeCommerce.Tests/ProjetoWakeCommerce.UnityTests/ProjetoWakeCommerce.UnityTests.csproj --no-build --configuration Release --verbosity normal

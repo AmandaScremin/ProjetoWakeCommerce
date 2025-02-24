@@ -1,0 +1,283 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ProjetoWakeCommerce",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Produto": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Faz uma busca de produtos que contenham a string enviada no campo busca e pode ser ordenado baseado em valor ou estoque.",
+        "description": "```json\r\n{\r\n    \"busca\": \"pro\",\r\n    \"orderBy\": \"estoque\"\r\n}\r\n```",
+        "parameters": [
+          {
+            "name": "busca",
+            "in": "query",
+            "description": "Filtro da busca por nome do produto.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "Critério de ordenação: valor ou estoque.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Produto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Produto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Produto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Cria um novo produto.",
+        "description": "Exemplo de requisição HTTP:\r\n\r\nPOST /Produto\r\n\r\nCorpo da requisição (JSON):\r\n```json\r\n{\r\n    \"id\": 0,\r\n    \"nome\": \"Produto Exemplo\",\r\n    \"estoque\": 10,\r\n    \"valor\": 100\r\n}\r\n```",
+        "requestBody": {
+          "description": "Objeto de transferência de dados - contém os campos necessários para envio",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProdutoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProdutoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProdutoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Atualiza um produto.",
+        "description": "Exemplo de requisição HTTP:\r\n\r\nPUT /Produto\r\n\r\nCorpo da requisição (JSON):\r\n```json\r\n{\r\n    \"id\": 0,\r\n    \"nome\": \"Produto Atualizado\",\r\n    \"estoque\": 15,\r\n    \"valor\": 120\r\n}\r\n```",
+        "requestBody": {
+          "description": "Objeto de transferência de dados - contém os campos necessários para envio",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProdutoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProdutoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProdutoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Produto/{id}": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Faz a busca de um produto pelo Id",
+        "description": "Exemplo de requisição HTTP:\r\n\r\nGET /Produto/{id}\r\n\r\nCorpo da requisição (JSON):\r\n```json\r\n{\r\n    \"id\": 1\r\n}\r\n```",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do produto a ser buscado",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Deleta um produto",
+        "description": "Exemplo de requisição HTTP:\r\n\r\nDELETE /Produto/{id}\r\n\r\nCorpo da requisição (JSON):\r\n```json\r\n{\r\n    \"id\": 1\r\n}\r\n```",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do produto a ser deletado",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateProdutoDTO": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "estoque": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "valor": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Produto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "estoque": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "valor": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateProdutoDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "estoque": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "valor": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

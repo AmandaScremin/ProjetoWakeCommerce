@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProjetoWakeCommerce</name>
+    </assembly>
+    <members>
+        <member name="M:ProjetoWakeCommerce.Controllers.ProdutoController.GetProdutos(System.String,System.String)">
+            <summary>
+            Faz uma busca de produtos que contenham a string enviada no campo busca e pode ser ordenado baseado em valor ou estoque.
+            </summary>
+            <remarks>
+            ```json
+            {
+                "busca": "pro",
+                "orderBy": "estoque"
+            }
+            ```
+            </remarks>
+            <param name="busca">Filtro da busca por nome do produto.</param>
+            <param name="orderBy">Critério de ordenação: valor ou estoque.</param>
+            <returns>Retorna uma lista de produtos encontrados com base na busca e ordenação.</returns>
+        </member>
+        <member name="M:ProjetoWakeCommerce.Controllers.ProdutoController.Getproduto(System.Int32)">
+            <summary>
+            Faz a busca de um produto pelo Id
+            </summary>
+            <remarks>
+            Exemplo de requisição HTTP:
+            
+            GET /Produto/{id}
+            
+            Corpo da requisição (JSON):
+            ```json
+            {
+                "id": 1
+            }
+            ```
+            </remarks>
+            <param name="id">Id do produto a ser buscado</param>
+            <returns>Retorna o produto solicitado</returns>
+        </member>
+        <member name="M:ProjetoWakeCommerce.Controllers.ProdutoController.CreateProduto(ProjetoWakeCommerce.DTOs.CreateProdutoDTO)">
+            <summary>
+            Cria um novo produto.
+            </summary>
+            <remarks>
+            Exemplo de requisição HTTP:
+            
+            POST /Produto
+            
+            Corpo da requisição (JSON):
+            ```json
+            {
+                "id": 0,
+                "nome": "Produto Exemplo",
+                "estoque": 10,
+                "valor": 100
+            }
+            ```
+            </remarks>
+            <param name="dto">Objeto de transferência de dados - contém os campos necessários para envio</param>
+            <returns>Retorna o produto criado</returns>
+        </member>
+        <member name="M:ProjetoWakeCommerce.Controllers.ProdutoController.UpdateProduto(ProjetoWakeCommerce.DTOs.UpdateProdutoDTO)">
+            <summary>
+            Atualiza um produto.
+            </summary>
+            <remarks>
+            Exemplo de requisição HTTP:
+            
+            PUT /Produto
+            
+            Corpo da requisição (JSON):
+            ```json
+            {
+                "id": 0,
+                "nome": "Produto Atualizado",
+                "estoque": 15,
+                "valor": 120
+            }
+            ```
+            </remarks>
+            <param name="dto">Objeto de transferência de dados - contém os campos necessários para envio</param>
+            <returns>Retorna 204 No Content</returns>
+        </member>
+        <member name="M:ProjetoWakeCommerce.Controllers.ProdutoController.DeleteProduto(System.Int32)">
+            <summary>
+            Deleta um produto
+            </summary>
+            <remarks>
+            Exemplo de requisição HTTP:
+            
+            DELETE /Produto/{id}
+            
+            Corpo da requisição (JSON):
+            ```json
+            {
+                "id": 1
+            }
+            ```
+            </remarks>
+            <param name="id">Id do produto a ser deletado</param>
+            <returns>Retorna 204 No Content</returns>
+        </member>
+    </members>
+</doc>
